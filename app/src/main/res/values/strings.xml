@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">ARTGG Mouse Pro</string>
+    <string name="service_channel_name">Mapeamento Ativo</string>
+    <string name="service_channel_desc">Serviço de captura de entrada em segundo plano</string>
+    <string name="accessibility_service_desc">O ARTGG Mouse Pro usa este serviço para simular toques na tela quando comandos de teclado ou mouse são recebidos. Nenhuma informação pessoal é coletada.</string>
+    <string name="activation_title">Ativação Necessária</string>
+    <string name="activation_desc">Para injetar toques sem root, o ARTGG precisa de permissão de acessibilidade ou ativação via ADB/Shizuku.</string>
+    <string name="btn_activate_accessibility">Ativar Acessibilidade</string>
+    <string name="btn_activate_adb">Ativar via ADB</string>
+    <string name="btn_activate_shizuku">Ativar via Shizuku</string>
+    <string name="status_activated">Ativado</string>
+    <string name="status_inactive">Inativo</string>
+    <string name="status_waiting_permission">Aguardando Permissão</string>
+    <string name="status_error">Erro</string>
+    <string name="overlay_menu_title">ARTGG</string>
+    <string name="editor_add_component">Adicionar Componente</string>
+    <string name="editor_save">Salvar</string>
+    <string name="editor_undo">Desfazer</string>
+    <string name="editor_redo">Refazer</string>
+    <string name="profile_default_name">Novo Perfil</string>
+</resources>

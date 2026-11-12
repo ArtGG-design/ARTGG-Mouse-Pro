@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <!-- Overlay / Floating window -->
+    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
+
+    <!-- Foreground service for persistent mapping -->
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE_SPECIAL_USE" />
+
+    <!-- Notifications (required for foreground service on API 33+) -->
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
+
+    <!-- Bluetooth peripherals -->
+    <uses-permission android:name="android.permission.BLUETOOTH" />
+    <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
+    <uses-permission android:name="android.permission.BLUETOOTH_SCAN" />
+    <uses-permission android:name="android.permission.BLUETOOTH_CONNECT" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+
+    <!-- USB Host for OTG keyboards/mice -->
+    <uses-feature android:name="android.hardware.usb.host" android:required="false" />
+
+    <!-- Keep awake during gaming sessions -->
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+
+    <!-- Vibration feedback -->
+    <uses-permission android:name="android.permission.VIBRATE" />
+
+    <!-- Package detection for per-game profiles -->
+    <uses-permission android:name="android.permission.QUERY_ALL_PACKAGES"
+        tools:ignore="QueryAllPackagesPermission" />
+
+    <!-- Shizuku integration (optional) -->
+    <uses-permission android:name="moe.shizuku.manager.permission.API_V23" />
+
+    <application
+        android:name=".ArtggApp"
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.ARTGGMousePro"
+        tools:targetApi="35">
+
+        <!-- Main Activity -->
+        <activity
+            android:name=".ui.MainActivity"
+            android:exported="true"
+            android:configChanges="orientation|screenSize|keyboardHidden"
+            android:windowSoftInputMode="adjustResize">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <!-- Mapping Overlay Activity (transparent, fullscreen editor) -->
+        <activity
+            android:name=".ui.MappingEditorActivity"
+            android:exported="false"
+            android:configChanges="orientation|screenSize|keyboardHidden"
+            android:screenOrientation="landscape"
+            android:theme="@style/Theme.ARTGGMousePro.Transparent" />
+
+        <!-- Input Capture Service — core mapping engine -->
+        <service
+            android:name=".service.InputCaptureService"
+            android:exported="false"
+            android:foregroundServiceType="specialUse">
+            <property
+                android:name="android.app.PROPERTY_SPECIAL_USE_FGS_SUBTYPE"
+                android:value="Game input mapping and overlay control" />
+        </service>
+
+        <!-- Accessibility Service for gesture injection (non-root) -->
+        <service
+            android:name=".service.ArtggAccessibilityService"
+            android:exported="false"
+            android:permission="android.permission.BIND_ACCESSIBILITY_SERVICE">
+            <intent-filter>
+                <action android:name="android.accessibilityservice.AccessibilityService" />
+            </intent-filter>
+            <meta-data
+                android:name="android.accessibilityservice"
+                android:resource="@xml/accessibility_service_config" />
+        </service>
+
+        <!-- Activation helper activity -->
+        <activity
+            android:name=".activation.ActivationActivity"
+            android:exported="false"
+            android:theme="@style/Theme.ARTGGMousePro" />
+
+    </application>
+
+</manifest>

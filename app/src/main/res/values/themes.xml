@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="Theme.ARTGGMousePro" parent="android:Theme.Material.NoActionBar">
+        <item name="android:colorPrimary">#0866FF</item>
+        <item name="android:colorAccent">#7655FF</item>
+        <item name="android:windowBackground">#090D18</item>
+        <item name="android:statusBarColor">#090D18</item>
+        <item name="android:navigationBarColor">#090D18</item>
+        <item name="android:windowLightStatusBar">false</item>
+    </style>
+
+    <style name="Theme.ARTGGMousePro.Transparent" parent="Theme.ARTGGMousePro">
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:backgroundDimEnabled">false</item>
+    </style>
+</resources>
