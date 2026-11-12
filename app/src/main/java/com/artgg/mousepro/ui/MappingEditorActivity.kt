@@ -20,8 +20,9 @@ import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.input.pointer.pointerInput
 import androidx.compose.ui.platform.LocalConfiguration
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalDensity
-import androidx.compose.ui.text.fontWeight
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.lifecycleScope
 import com.artgg.mousepro.data.model.ComponentType
@@ -132,15 +133,16 @@ fun MappingEditorScreen(
                 IconButton(onClick = { showAddMenu = !showAddMenu }) {
                     Icon(Icons.Default.Add, "Adicionar", tint = ArtggElectricBlue)
                 }
+                val localContext = LocalContext.current
                 IconButton(onClick = {
-                    val ctx = context as? ComponentActivity
+                    val activity = localContext as? ComponentActivity
                     val p = profile
-                    if (ctx != null && p != null) {
+                    if (activity != null && p != null) {
                         val updated = p.copy(
                             components = components,
                             updatedAt = System.currentTimeMillis()
                         )
-                        ctx.lifecycleScope.launch {
+                        activity.lifecycleScope.launch {
                             repository.saveProfile(updated)
                         }
                     }
